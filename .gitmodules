@@ -1,0 +1,3 @@
+[submodule "SkyLib"]
+	path = SkyLib
+	url = git@github.com:cyber-gh/SkyLib.git
