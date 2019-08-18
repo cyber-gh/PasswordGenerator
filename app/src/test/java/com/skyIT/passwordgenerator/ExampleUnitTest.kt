@@ -1,4 +1,4 @@
-package com.example.passwordgenerator
+package com.skyIT.passwordgenerator
 
 import org.junit.Test
 

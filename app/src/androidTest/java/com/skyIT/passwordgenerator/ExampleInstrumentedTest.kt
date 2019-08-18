@@ -1,4 +1,4 @@
-package com.example.passwordgenerator
+package com.skyIT.passwordgenerator
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

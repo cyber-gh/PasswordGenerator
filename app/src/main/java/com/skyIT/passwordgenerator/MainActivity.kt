@@ -1,24 +1,34 @@
-package com.example.passwordgenerator
+package com.skyIT.passwordgenerator
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import com.skyIT.passwordgenerator.adapters.MainAdapter
+import com.thinkit.skylib.BaseActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+
+    override fun initialize() {
+        super.initialize()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        initalizeTabLayout()
+    }
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+    private fun initalizeTabLayout() {
+        val fragmentAdapter = MainAdapter(supportFragmentManager, context = applicationContext)
+        mainViewPager.adapter = fragmentAdapter
+
+        tabLayout.setupWithViewPager(mainViewPager)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
