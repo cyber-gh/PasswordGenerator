@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "479190421398",
+    "firebase_url": "https://pasword-generator.firebaseio.com",
+    "project_id": "pasword-generator",
+    "storage_bucket": "pasword-generator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479190421398:android:346d24e6b5bac440",
+        "android_client_info": {
+          "package_name": "com.skyIT.passwordgenerator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479190421398-as5s3ldm0956prguvo5qfmntcet4mdqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZmXHfVRPQk9pb6ayLd8zp9vAfRmyaYKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479190421398-as5s3ldm0956prguvo5qfmntcet4mdqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
