@@ -1,14 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.skyIT.passwordgenerator.gui.GeneratorFragment">
 
-    <TextView
+    <com.warkiz.widget.IndicatorSeekBar
+            android:id="@+id/password_len_seek"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:isb_indicator_color="@color/primaryLightColor"
+            app:isb_indicator_text_color="@color/primaryTextColor"
+            app:isb_indicator_text_size="18sp"
+            app:isb_max="50"
+            app:isb_min="1.0"
+            app:isb_only_thumb_draggable="false"
+            app:isb_progress="16"
+            app:isb_seek_smoothly="true"
+            app:isb_show_indicator="rounded_rectangle"
+            app:isb_show_tick_marks_type="oval"
+            app:isb_show_tick_texts="true"
+            app:isb_thumb_color="@color/primaryColor"
+            app:isb_thumb_size="20dp"
+            app:isb_tick_marks_drawable="@mipmap/ic_launcher"
+            app:isb_tick_marks_ends_hide="true"
+            app:isb_tick_marks_size="13dp"
+            app:isb_tick_texts_array="@array/seekbar_start_end_labels"
+            app:isb_tick_texts_color="@color/secondaryDarkColor"
+            app:isb_tick_texts_size="15sp"
+            app:isb_ticks_count="2"
+            app:isb_track_background_color="@color/primaryTextColor"
+            app:isb_track_background_size="2dp"
+            app:isb_track_progress_color="@color/primaryColor"
+            app:isb_track_progress_size="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-</FrameLayout>
+    <TextView
+            android:id="@+id/textView"
+            style="@android:style/Widget.Holo.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/password_length"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+            style="@style/DefaultCheckbox"
+            android:id="@+id/include_symbols"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/include_symbols"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_len_seek"
+            app:useMaterialThemeColors="false" />
+
+    <CheckBox
+            style="@style/DefaultCheckbox"
+            android:id="@+id/include_numbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/include_numbers"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_len_seek" />
+
+    <CheckBox
+            style="@style/DefaultCheckbox"
+            android:id="@+id/include_lower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/include_lowercase"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/include_symbols"
+            app:layout_constraintTop_toBottomOf="@+id/include_symbols" />
+
+    <CheckBox
+            style="@style/DefaultCheckbox"
+            android:id="@+id/include_upper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/include_uppercase"
+            app:layout_constraintStart_toStartOf="@+id/include_lower"
+            app:layout_constraintTop_toBottomOf="@+id/include_lower" />
+
+    <CheckBox
+            style="@style/DefaultCheckbox"
+            android:id="@+id/exclude_similar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/excude_similar"
+            app:layout_constraintEnd_toEndOf="@+id/include_upper"
+            app:layout_constraintStart_toStartOf="@+id/include_upper"
+            app:layout_constraintTop_toBottomOf="@+id/include_upper" />
+
+    <Button
+            android:id="@+id/generate_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/generate_password"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/exclude_similar"
+            app:layout_constraintStart_toStartOf="@+id/exclude_similar" />
+
+    <Button
+            android:id="@+id/copy_clib_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/copy_to_clipboard"
+            app:layout_constraintBottom_toTopOf="@+id/generate_btn"
+            app:layout_constraintEnd_toEndOf="@+id/generate_btn"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="@+id/generate_btn" />
+
+    <TextView
+            android:id="@+id/generated_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeMinTextSize="8dp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/password_output_background"
+            android:fontFamily="@font/archivo_black"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:text="@string/generated_password"
+            android:textColor="#1C1A19"
+            android:textSize="18sp"
+            app:autoSizeMinTextSize="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exclude_similar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

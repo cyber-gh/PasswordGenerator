@@ -1,10 +1,14 @@
 package com.skyIT.passwordgenerator
 
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import com.skyIT.passwordgenerator.adapters.MainAdapter
 import com.thinkit.skylib.BaseActivity
 
@@ -27,7 +31,6 @@ class MainActivity : BaseActivity() {
     private fun initalizeTabLayout() {
         val fragmentAdapter = MainAdapter(supportFragmentManager, context = applicationContext)
         mainViewPager.adapter = fragmentAdapter
-
         tabLayout.setupWithViewPager(mainViewPager)
     }
 
