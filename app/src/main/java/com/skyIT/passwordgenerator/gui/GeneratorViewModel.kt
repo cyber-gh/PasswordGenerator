@@ -2,6 +2,10 @@ package com.skyIT.passwordgenerator.gui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+import java.security.SecureRandom
+import kotlin.math.absoluteValue
 
 class GeneratorViewModel : ViewModel() {
     val currentPasswordLive = MutableLiveData<String>().apply { value = "generated-password" }
@@ -13,23 +17,33 @@ class GeneratorViewModel : ViewModel() {
     var excludeSimilar : Boolean = false
 
     fun updatePassoword() {
-        val charSet = mutableListOf<Char>()
-        if (includeNumbers) charSet += numberChars
-        if (inlcudeLower) charSet += lowerChars
-        if (includeUpper) charSet += upperChars
-        if (includeSymbols) charSet += symbolCharset
-        charSet.shuffle()
-        if (charSet.isEmpty()) {
-            currentPasswordLive.value = ""
-            return
-        }
-        var generatedPass: String = ""
-        for (el in 0..passwordLen) {
-            generatedPass += charSet.random()
-        }
-        currentPasswordLive.value = generatedPass
+        viewModelScope.launch {
 
 
+            val charSet = mutableListOf<Char>()
+            if (includeNumbers) charSet += numberChars
+            if (inlcudeLower) charSet += lowerChars
+            if (includeUpper) charSet += upperChars
+            if (includeSymbols) charSet += symbolCharset
+            charSet.shuffle()
+            if (charSet.isEmpty()) {
+                currentPasswordLive.value = ""
+                return@launch
+            }
+            var generatedPass: String = ""
+            for (el in 0..passwordLen) {
+                val randomNr = getTrueRandom().absoluteValue % charSet.size
+                generatedPass += charSet[randomNr]
+            }
+            currentPasswordLive.value = generatedPass
+
+        }
+    }
+
+    fun getTrueRandom(): Int {
+        val secureRandom = SecureRandom()
+        secureRandom.setSeed(secureRandom.generateSeed(System.currentTimeMillis().toInt().absoluteValue % 1024))
+        return secureRandom.nextInt()
     }
 }
 

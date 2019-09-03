@@ -5,7 +5,7 @@
     <string name="history">History</string>
     <string name="password_length">Password length</string>
     <string name="include_symbols">"Include Symbols "</string>
-    <string name="include_numbers" >Include Numbers</string>
+    <string name="include_numbers">Include Numbers</string>
     <string name="include_lowercase">Include Lowercase Characters</string>
     <string name="include_uppercase">Include Uppercase Characters</string>
     <string name="excude_similar">Exclude Similar Characters</string>
@@ -18,4 +18,7 @@
         <item>weak</item>
         <item>strong</item>
     </array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
