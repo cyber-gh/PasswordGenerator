@@ -34,7 +34,6 @@ class MainActivity : BaseActivity() {
 
         adapter.addFragment(GeneratorFragment(), "Generate")
         adapter.addFragment(HistoryFragment(), "History")
-
         mainViewPager.adapter = adapter
         tabLayout.setupWithViewPager(mainViewPager)
         AppDatabaseInstance = AppDatabase(this)

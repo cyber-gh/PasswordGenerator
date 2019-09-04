@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.generator_fragment.*
 
 
 //
-class GeneratorFragment : Fragment() {
+class GeneratorFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = GeneratorFragment()
