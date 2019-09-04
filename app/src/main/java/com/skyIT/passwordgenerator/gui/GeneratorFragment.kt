@@ -57,15 +57,15 @@ class GeneratorFragment : BaseFragment() {
             viewModel.updatePassoword()
         }
 
-        include_lower.setOnCheckedChangeListener { compoundButton, b ->
+        include_lower.setOnCheckedChangeListener { _, b ->
             viewModel.inlcudeLower = b
             viewModel.updatePassoword()
         }
-        include_upper.setOnCheckedChangeListener { compoundButton, b ->
+        include_upper.setOnCheckedChangeListener { _, b ->
             viewModel.includeUpper = b
             viewModel.updatePassoword()
         }
-        include_numbers.setOnCheckedChangeListener { compoundButton, b ->
+        include_numbers.setOnCheckedChangeListener { _, b ->
             viewModel.includeNumbers = b
             viewModel.updatePassoword()
         }

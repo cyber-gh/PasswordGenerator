@@ -26,13 +26,4 @@ class HistoryFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
     }
-
-    override fun onResume() {
-        super.onResume()
-
-
-    }
-
-
-
 }
