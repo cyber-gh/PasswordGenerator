@@ -7,16 +7,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.skyIT.passwordgenerator.data.AppDatabase
-import com.skyIT.passwordgenerator.data.GeneratedPassword
 import com.skyIT.passwordgenerator.gui.*
+import com.skyIT.passwordgenerator.gui.generic.Router
 import com.thinkit.skylib.BaseActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
-lateinit var AppDatabaseInstance: AppDatabase
 
 class MainActivity : BaseActivity() {
 
@@ -36,7 +33,7 @@ class MainActivity : BaseActivity() {
         adapter.addFragment(HistoryFragment(), "History")
         mainViewPager.adapter = adapter
         tabLayout.setupWithViewPager(mainViewPager)
-        AppDatabaseInstance = AppDatabase(this)
+
 
 
     }

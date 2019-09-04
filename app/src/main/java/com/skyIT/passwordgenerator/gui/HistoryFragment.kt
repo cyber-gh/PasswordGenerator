@@ -1,14 +1,11 @@
 package com.skyIT.passwordgenerator.gui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.skyIT.passwordgenerator.R
-import kotlinx.android.synthetic.main.history_fragment.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.skyIT.passwordgenerator.gui.generic.BaseFragment
 
 class HistoryFragment : BaseFragment() {
     private lateinit var viewModel: HistoryViewModel

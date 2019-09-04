@@ -1,7 +1,7 @@
 package com.skyIT.passwordgenerator.data
 
 import android.app.Application
-import com.skyIT.passwordgenerator.gui.BaseFragment
+import com.skyIT.passwordgenerator.gui.generic.BaseFragment
 import dagger.Component
 import javax.inject.Singleton
 

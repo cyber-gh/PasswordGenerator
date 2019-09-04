@@ -1,4 +1,4 @@
-package com.skyIT.passwordgenerator.gui
+package com.skyIT.passwordgenerator.gui.generic
 
 import android.app.Application
 import com.skyIT.passwordgenerator.MainActivity

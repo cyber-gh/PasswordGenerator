@@ -1,4 +1,4 @@
-package com.skyIT.passwordgenerator.gui
+package com.skyIT.passwordgenerator.gui.generic
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
