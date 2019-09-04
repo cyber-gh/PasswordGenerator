@@ -21,6 +21,9 @@ import kotlinx.android.synthetic.main.generator_fragment.*
 
 //
 class GeneratorFragment : BaseFragment() {
+    override fun initializeViewModel() {
+        viewModel = ViewModelProviders.of(this).get(GeneratorViewModel::class.java)
+    }
 
     companion object {
         fun newInstance() = GeneratorFragment()
@@ -42,7 +45,7 @@ class GeneratorFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(GeneratorViewModel::class.java)
+
         bindUI()
     }
 
