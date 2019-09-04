@@ -32,6 +32,5 @@ class HistoryFragmentV2 : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.tst = 2
     }
 }

@@ -1,31 +1,22 @@
 package com.skyIT.passwordgenerator
 
-import android.content.ClipboardManager
-import android.content.Context
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.room.Room
-import androidx.viewpager.widget.PagerAdapter
-import com.skyIT.passwordgenerator.adapters.MainAdapter
 import com.skyIT.passwordgenerator.data.AppDatabase
-import com.skyIT.passwordgenerator.gui.HistoryFragment
-import com.skyIT.passwordgenerator.gui.HistoryFragmentV2
-import com.skyIT.passwordgenerator.gui.Router
-import com.skyIT.passwordgenerator.gui.TestFragment
+import com.skyIT.passwordgenerator.data.GeneratedPassword
+import com.skyIT.passwordgenerator.gui.*
 import com.thinkit.skylib.BaseActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+
+lateinit var AppDatabaseInstance: AppDatabase
 
 class MainActivity : BaseActivity() {
 
@@ -41,21 +32,18 @@ class MainActivity : BaseActivity() {
 
         val adapter = ViewPagerAdapter(supportFragmentManager)
 
-        adapter.addFragment(HistoryFragment(), "Test fragment")
-        adapter.addFragment(HistoryFragment(), "Test fragment 2")
+        adapter.addFragment(GeneratorFragment(), "Generate")
+        adapter.addFragment(HistoryFragment(), "History")
 
         mainViewPager.adapter = adapter
-//        tabLayout.setupWithViewPager(mainViewPager)
-        //initalizeTabLayout()
+        tabLayout.setupWithViewPager(mainViewPager)
+        AppDatabaseInstance = AppDatabase(this)
+
+
     }
 
 
-    private fun initalizeTabLayout() {
-//        mainViewPager.adapter = PagerAdapterFactory.getPagerAdapter(listOf(
-//            HistoryFragment(), HistoryFragment()
-//        ), supportFragmentManager)
-        //tabLayout.setupWithViewPager(mainViewPager)
-    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
