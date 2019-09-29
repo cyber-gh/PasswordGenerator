@@ -5,70 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.LayoutRes
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.skyIT.passwordgenerator.R
-import com.skyIT.passwordgenerator.data.GeneratedPassword
 import com.skyIT.passwordgenerator.gui.generic.BaseFragment
 import kotlinx.android.synthetic.main.history_fragment.*
-import kotlinx.android.synthetic.main.password_history_view.view.*
 
-fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false) : View{
-    return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
-}
-
-interface ListElementDataSetter<T> {
-    fun bindData(el: T)
-}
-
-
-class HistoryAdapter(private var listData: ArrayList<GeneratedPassword>) : RecyclerView.Adapter<HistoryAdapter.PasswordHolder> () {
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): HistoryAdapter.PasswordHolder {
-        return PasswordHolder(parent.inflate(R.layout.password_history_view, false))
-    }
-
-    override fun getItemCount() = listData.count()
-
-    override fun onBindViewHolder(holder: HistoryAdapter.PasswordHolder, position: Int) {
-        holder.bindData(listData[position])
-    }
-
-    class PasswordHolder(private var v: View) : RecyclerView.ViewHolder(v), View.OnClickListener, ListElementDataSetter<GeneratedPassword> {
-        init {
-            v.setOnClickListener(this)
-        }
-
-        var isHidden = true
-
-        override fun onClick(p0: View?) {
-            //nothing
-        }
-
-        fun getHiddenPass(normalPass: String) = normalPass.substring(startIndex = 0, endIndex = normalPass.length / 2) + "*".repeat(normalPass.length / 2)
-
-        override fun bindData(el: GeneratedPassword) {
-            v.password_el_pass.text = getHiddenPass(el.password)
-            v.tap_to_revlea_btn.setOnClickListener {
-                isHidden = !isHidden
-                v.password_el_pass.text = if(isHidden) getHiddenPass(el.password) else el.password
-            }
-
-        }
-
-    }
-
-    fun updateList(newList : ArrayList<GeneratedPassword>) {
-        listData = newList
-        notifyDataSetChanged()
-    }
-
-}
 
 class HistoryFragment : BaseFragment() {
     private lateinit var viewModel: HistoryViewModel

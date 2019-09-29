@@ -42,13 +42,22 @@ class GeneratorViewModel : BaseViewModel() {
             }
             currentPasswordLive.value = generatedPass
             if (generatedPass.isNotEmpty() && saveToDabase) {
-                bacgroundScope.launch {
-                    passwordDao.insertAll(
-                        GeneratedPassword(UUID.randomUUID().toString(), generatedPass, Calendar.getInstance().toString())
-                    )
-                }
+                saveToDatabase(generatedPass)
             }
 
+        }
+    }
+
+    private fun saveToDatabase(generatedPass: String) {
+        //TODO trigger an list update
+        bacgroundScope.launch {
+            passwordDao.insertAll(
+                GeneratedPassword(
+                    UUID.randomUUID().toString(),
+                    generatedPass,
+                    Calendar.getInstance().toString()
+                )
+            )
         }
     }
 
