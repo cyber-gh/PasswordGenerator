@@ -3,12 +3,17 @@ package com.skyIT.passwordgenerator.gui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewModelScope
+import com.skyIT.passwordgenerator.data.GeneratedPassword
+import com.skyIT.passwordgenerator.data.PasswordDao
+import com.skyIT.passwordgenerator.gui.generic.BaseViewModel
 import kotlinx.coroutines.launch
 import java.security.SecureRandom
+import java.util.*
 import kotlin.math.absoluteValue
 
-class GeneratorViewModel : ViewModel() {
+class GeneratorViewModel : BaseViewModel() {
     val currentPasswordLive = MutableLiveData<String>().apply { value = "generated-password" }
+     lateinit var passwordDao: PasswordDao
     var passwordLen : Int = 16
     var includeSymbols: Boolean = false
     var includeNumbers : Boolean = false
@@ -16,7 +21,7 @@ class GeneratorViewModel : ViewModel() {
     var includeUpper : Boolean = false
     var excludeSimilar : Boolean = false
 
-    fun updatePassoword() {
+    fun updatePassoword(saveToDabase: Boolean = false) {
         viewModelScope.launch {
 
 
@@ -36,6 +41,13 @@ class GeneratorViewModel : ViewModel() {
                 generatedPass += charSet[randomNr]
             }
             currentPasswordLive.value = generatedPass
+            if (generatedPass.isNotEmpty() && saveToDabase) {
+                bacgroundScope.launch {
+                    passwordDao.insertAll(
+                        GeneratedPassword(UUID.randomUUID().toString(), generatedPass, Calendar.getInstance().toString())
+                    )
+                }
+            }
 
         }
     }

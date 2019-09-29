@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.generator_fragment.*
 class GeneratorFragment : BaseFragment() {
     override fun initializeViewModel() {
         viewModel = ViewModelProviders.of(this).get(GeneratorViewModel::class.java)
+        viewModel.passwordDao = repository.productDao
     }
 
     companion object {
@@ -86,7 +87,7 @@ class GeneratorFragment : BaseFragment() {
         }
 
         generate_btn.setOnClickListener {
-            viewModel.updatePassoword()
+            viewModel.updatePassoword(true)
         }
 
         password_len_seek.onSeekChangeListener = (object : OnSeekChangeListener {
