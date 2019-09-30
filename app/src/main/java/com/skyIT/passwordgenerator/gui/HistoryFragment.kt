@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skyIT.passwordgenerator.R
 import com.skyIT.passwordgenerator.gui.generic.BaseFragment
 import kotlinx.android.synthetic.main.history_fragment.*
+import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.launch
 
 
 class HistoryFragment : BaseFragment() {
@@ -62,6 +65,14 @@ class HistoryFragment : BaseFragment() {
             list_refresh_control.isRefreshing = false
         })
 
+        repository.updatePasswordListLive.observe(viewLifecycleOwner, Observer {
+            viewModel.getData()
+        })
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getData()
     }
 }

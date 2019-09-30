@@ -2,6 +2,7 @@ package com.skyIT.passwordgenerator.gui.generic
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.skyIT.passwordgenerator.data.AppModule
 import com.skyIT.passwordgenerator.data.DaggerFragmentComponent
@@ -29,5 +30,8 @@ abstract class BaseFragment : Fragment() {
     }
 
     abstract fun initializeViewModel()
+
+    fun toastS(str: String) = Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
+    fun toastL(str: String) = Toast.makeText(context, str, Toast.LENGTH_LONG).show()
 
 }

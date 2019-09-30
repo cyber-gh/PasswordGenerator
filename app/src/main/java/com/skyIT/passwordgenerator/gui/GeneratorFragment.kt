@@ -24,6 +24,7 @@ class GeneratorFragment : BaseFragment() {
     override fun initializeViewModel() {
         viewModel = ViewModelProviders.of(this).get(GeneratorViewModel::class.java)
         viewModel.passwordDao = repository.productDao
+        viewModel.repository = repository
     }
 
     companion object {
@@ -88,6 +89,7 @@ class GeneratorFragment : BaseFragment() {
 
         generate_btn.setOnClickListener {
             viewModel.updatePassoword(true)
+            toastL("Password saved to cache")
         }
 
         password_len_seek.onSeekChangeListener = (object : OnSeekChangeListener {

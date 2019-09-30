@@ -44,6 +44,7 @@ class HistoryAdapter(private var listData: ArrayList<GeneratedPassword>) : Recyc
                 isHidden = !isHidden
                 v.password_el_pass.text = if(isHidden) getHiddenPass(el.password) else el.password
             }
+            v.password_gen_time.text = el.time
 
         }
 

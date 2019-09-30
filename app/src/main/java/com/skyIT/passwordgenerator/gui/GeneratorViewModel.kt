@@ -5,15 +5,18 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewModelScope
 import com.skyIT.passwordgenerator.data.GeneratedPassword
 import com.skyIT.passwordgenerator.data.PasswordDao
+import com.skyIT.passwordgenerator.data.Repository
 import com.skyIT.passwordgenerator.gui.generic.BaseViewModel
 import kotlinx.coroutines.launch
 import java.security.SecureRandom
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.absoluteValue
 
 class GeneratorViewModel : BaseViewModel() {
     val currentPasswordLive = MutableLiveData<String>().apply { value = "generated-password" }
-     lateinit var passwordDao: PasswordDao
+    lateinit var passwordDao: PasswordDao
+    lateinit var repository: Repository
     var passwordLen : Int = 16
     var includeSymbols: Boolean = false
     var includeNumbers : Boolean = false
@@ -55,9 +58,13 @@ class GeneratorViewModel : BaseViewModel() {
                 GeneratedPassword(
                     UUID.randomUUID().toString(),
                     generatedPass,
-                    Calendar.getInstance().toString()
+                    Calendar.getInstance().toStr()
                 )
             )
+            viewModelScope.launch {
+                repository.updatePasswordListLive.value = true
+            }
+
         }
     }
 
@@ -65,6 +72,12 @@ class GeneratorViewModel : BaseViewModel() {
         val secureRandom = SecureRandom()
         secureRandom.setSeed(secureRandom.generateSeed(System.currentTimeMillis().toInt().absoluteValue % 1024))
         return secureRandom.nextInt()
+    }
+
+    fun Calendar.toStr() : String {
+        val date = this.time
+        val dateFormat = SimpleDateFormat("yyyy-mm-dd hh")
+        return dateFormat.format(date)
     }
 }
 
