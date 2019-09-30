@@ -74,9 +74,8 @@ class GeneratorViewModel : BaseViewModel() {
         return secureRandom.nextInt()
     }
 
-    fun Calendar.toStr() : String {
+    fun Calendar.toStr(dateFormat : SimpleDateFormat = SimpleDateFormat("yyyy-mm-dd hh")) : String {
         val date = this.time
-        val dateFormat = SimpleDateFormat("yyyy-mm-dd hh")
         return dateFormat.format(date)
     }
 }
